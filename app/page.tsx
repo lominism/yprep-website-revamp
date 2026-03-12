@@ -1,77 +1,129 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {
   BookOpen,
-  CheckCircle,
   GraduationCap,
-  BarChart,
-  Globe,
   Users,
   Clock,
+  Award,
+  Heart,
 } from "lucide-react";
 import TestimonialsCarousel from "@/components/testimonials-carousel";
-import PricingTable from "@/components/pricing-table";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+
+const tests = [
+  {
+    name: "SAT",
+    href: "/tests/sat",
+    badge: "College Admissions",
+    desc: "Master the digital SAT with our expert-designed curriculum covering Reading, Writing, and Math.",
+  },
+  {
+    name: "ACT",
+    href: "/tests/act",
+    badge: "College Admissions",
+    desc: "Comprehensive ACT preparation across English, Math, Reading, and Science sections.",
+  },
+  {
+    name: "GRE",
+    href: "/tests/gre",
+    badge: "Graduate School",
+    desc: "Score high on the GRE with targeted instruction in Verbal Reasoning, Quantitative, and AWA.",
+  },
+  {
+    name: "GMAT",
+    href: "/tests/gmat",
+    badge: "Business School",
+    desc: "Achieve your target GMAT score with our proven strategies for all four exam sections.",
+  },
+  {
+    name: "TOEFL",
+    href: "/tests/toefl",
+    badge: "English Proficiency",
+    desc: "Build the English skills needed to excel across Reading, Listening, Speaking, and Writing.",
+  },
+  {
+    name: "IELTS",
+    href: "/tests/ielts",
+    badge: "English Proficiency",
+    desc: "Reach your target band score with structured practice and personalised feedback.",
+  },
+];
+
+const features = [
+  {
+    icon: GraduationCap,
+    title: "Expert Instructors",
+    desc: "Our tutors scored in the top percentiles and bring years of teaching experience to every session.",
+  },
+  {
+    icon: Users,
+    title: "Small Group Sizes",
+    desc: "We keep class sizes small so every student gets the attention they need to succeed.",
+  },
+  {
+    icon: BookOpen,
+    title: "Proven Materials",
+    desc: "Access carefully curated study guides, practice tests, and question banks for every exam.",
+  },
+  {
+    icon: Heart,
+    title: "Personalised Approach",
+    desc: "We tailor each program to your strengths, weaknesses, and target score.",
+  },
+  {
+    icon: Award,
+    title: "Track Record",
+    desc: "Over a decade of helping Bangkok students reach their dream schools around the world.",
+  },
+  {
+    icon: Clock,
+    title: "Flexible Scheduling",
+    desc: "We work around your school schedule with convenient session times, including weekends.",
+  },
+];
 
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="w-full py-4 md:py-8 lg:py-12 bg-gradient-to-b from-orange-50 to-white">
+
+        {/* Hero */}
+        <section className="w-full py-8 md:py-16 lg:py-24 bg-gradient-to-b from-orange-50 to-white">
           <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_500px]">
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                    Ace Your Standardized Tests with Confidence
-                  </h1>
-                  <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
-                    Expert-designed prep courses for SAT, ACT, GMAT, TOEFL, and
-                    IELTS. Personalized learning paths to help you achieve your
-                    highest score.
-                  </p>
-                </div>
-                <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Button
-                    size="lg"
-                    className="bg-orange-400 hover:bg-orange-500"
-                  >
-                    Start Free Trial
+            <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
+              <div className="flex flex-col space-y-5">
+                <Badge className="w-fit bg-orange-100 text-orange-700 hover:bg-orange-100">
+                  Bangkok's Boutique Test Prep Center — Est. 2013
+                </Badge>
+                <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+                  Ace Your Standardized Tests with Confidence
+                </h1>
+                <p className="max-w-[560px] text-gray-500 md:text-lg">
+                  Expert-designed prep for SAT, ACT, GRE, GMAT, TOEFL, and IELTS.
+                  Personalised programs, small classes, and tutors who genuinely care.
+                </p>
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <Button asChild size="lg" className="bg-orange-400 hover:bg-orange-500">
+                    <Link href="/about#contact">Contact Us</Link>
                   </Button>
-                  <Button variant="outline" size="lg">
-                    Explore Courses
+                  <Button asChild variant="outline" size="lg">
+                    <Link href="/tutoring">Explore Programs</Link>
                   </Button>
-                </div>
-                <div className="flex items-center space-x-4 text-sm">
-                  <div className="flex items-center">
-                    <CheckCircle className="mr-1 h-4 w-4 text-orange-500" />
-                    <span>7-day free trial</span>
-                  </div>
-                  <div className="flex items-center">
-                    <CheckCircle className="mr-1 h-4 w-4 text-orange-500" />
-                    <span>No credit card required</span>
-                  </div>
                 </div>
               </div>
               <div className="flex items-center justify-center">
                 <Image
                   src="/girl-studying.png"
-                  alt="Students studying"
-                  width={500}
-                  height={500}
-                  className="rounded-lg object-cover"
+                  alt="Student studying at YPrep Academy"
+                  width={520}
+                  height={520}
+                  className="rounded-2xl object-cover shadow-lg"
                   priority
                 />
               </div>
@@ -79,557 +131,113 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Stats Section */}
-        <section className="w-full py-12 md:py-16 lg:py-20 border-y bg-white">
+        {/* Stats */}
+        <section className="w-full py-12 md:py-16 border-y bg-white">
           <div className="container px-4 md:px-6">
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-8">
-              <div className="flex flex-col items-center justify-center space-y-2 text-center">
-                <div className="text-3xl font-bold sm:text-4xl">98%</div>
-                <div className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                  Score Improvement
+            <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-10 text-center">
+              {[
+                { stat: "2013", label: "Founded in Bangkok" },
+                { stat: "6", label: "Tests Covered" },
+                { stat: "98%", label: "Score Improvement Rate" },
+                { stat: "1,000+", label: "Students Helped" },
+              ].map(({ stat, label }) => (
+                <div key={label} className="flex flex-col items-center space-y-1">
+                  <div className="text-3xl font-bold text-orange-500 sm:text-4xl">{stat}</div>
+                  <div className="text-sm font-medium text-gray-500">{label}</div>
                 </div>
-              </div>
-              <div className="flex flex-col items-center justify-center space-y-2 text-center">
-                <div className="text-3xl font-bold sm:text-4xl">50K+</div>
-                <div className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                  Students Helped
-                </div>
-              </div>
-              <div className="flex flex-col items-center justify-center space-y-2 text-center">
-                <div className="text-3xl font-bold sm:text-4xl">5</div>
-                <div className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                  Test Types
-                </div>
-              </div>
-              <div className="flex flex-col items-center justify-center space-y-2 text-center">
-                <div className="text-3xl font-bold sm:text-4xl">24/7</div>
-                <div className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                  Support
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Test Types Section */}
-        <section className="w-full py-6 md:py-12 lg:py-24">
+        {/* Test Programs */}
+        <section className="w-full py-12 md:py-20 lg:py-24">
           <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Comprehensive Test Preparation
-                </h2>
-                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  Choose from our expert-designed courses for all major
-                  standardized tests
-                </p>
-              </div>
+            <div className="text-center space-y-3 mb-12">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Our Test Prep Programs</h2>
+              <p className="max-w-[680px] mx-auto text-gray-500 md:text-lg">
+                Expert preparation for all major standardized tests
+              </p>
             </div>
-            <div className="mx-auto mt-12">
-              <Tabs defaultValue="sat" className="w-full">
-                <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 mb-16 md:mb-0">
-                  <TabsTrigger value="sat" className="bg-muted">
-                    SAT
-                  </TabsTrigger>
-                  <TabsTrigger value="act" className="bg-muted">
-                    ACT
-                  </TabsTrigger>
-                  <TabsTrigger value="gmat" className="bg-muted">
-                    GMAT
-                  </TabsTrigger>
-                  <TabsTrigger value="toefl" className="bg-muted">
-                    TOEFL
-                  </TabsTrigger>
-                  <TabsTrigger value="ielts" className="bg-muted">
-                    IELTS
-                  </TabsTrigger>
-                </TabsList>
-                <TabsContent value="sat" className="mt-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>SAT Preparation</CardTitle>
-                      <CardDescription>
-                        Comprehensive preparation for the Scholastic Assessment
-                        Test
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="grid gap-4 md:grid-cols-2">
-                        <div>
-                          <h3 className="text-lg font-medium">
-                            What You'll Learn
-                          </h3>
-                          <ul className="mt-2 space-y-2">
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Evidence-Based Reading and Writing</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Math - Algebra and Problem Solving</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Essay Writing Strategies (Optional)</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Time Management Techniques</span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-medium">
-                            Course Features
-                          </h3>
-                          <ul className="mt-2 space-y-2">
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>10 Full-Length Practice Tests</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>3,000+ Practice Questions</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Video Lessons & Tutorials</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Personalized Study Plan</span>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </CardContent>
-                    <CardFooter>
-                      <Button className="w-full bg-orange-400 hover:bg-orange-500">
-                        Explore SAT Prep
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                </TabsContent>
-                <TabsContent value="act" className="mt-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>ACT Preparation</CardTitle>
-                      <CardDescription>
-                        Complete preparation for the American College Testing
-                        exam
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="grid gap-4 md:grid-cols-2">
-                        <div>
-                          <h3 className="text-lg font-medium">
-                            What You'll Learn
-                          </h3>
-                          <ul className="mt-2 space-y-2">
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>English Grammar & Usage</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Math & Scientific Reasoning</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Reading Comprehension</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Essay Writing (Optional)</span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-medium">
-                            Course Features
-                          </h3>
-                          <ul className="mt-2 space-y-2">
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>8 Full-Length Practice Tests</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>2,500+ Practice Questions</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Section-Specific Strategies</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Score Improvement Guarantee</span>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </CardContent>
-                    <CardFooter>
-                      <Button className="w-full bg-orange-400 hover:bg-orange-500">
-                        Explore ACT Prep
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                </TabsContent>
-                <TabsContent value="gmat" className="mt-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>GMAT Preparation</CardTitle>
-                      <CardDescription>
-                        Advanced preparation for the Graduate Management
-                        Admission Test
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="grid gap-4 md:grid-cols-2">
-                        <div>
-                          <h3 className="text-lg font-medium">
-                            What You'll Learn
-                          </h3>
-                          <ul className="mt-2 space-y-2">
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Quantitative Reasoning</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Verbal Reasoning</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Integrated Reasoning</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Analytical Writing Assessment</span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-medium">
-                            Course Features
-                          </h3>
-                          <ul className="mt-2 space-y-2">
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>6 Full-Length Practice Tests</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>1,500+ Practice Questions</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Business School Application Tips</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>1-on-1 Tutoring Available</span>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </CardContent>
-                    <CardFooter>
-                      <Button className="w-full bg-orange-400 hover:bg-orange-500">
-                        Explore GMAT Prep
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                </TabsContent>
-                <TabsContent value="toefl" className="mt-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>TOEFL Preparation</CardTitle>
-                      <CardDescription>
-                        Specialized preparation for the Test of English as a
-                        Foreign Language
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="grid gap-4 md:grid-cols-2">
-                        <div>
-                          <h3 className="text-lg font-medium">
-                            What You'll Learn
-                          </h3>
-                          <ul className="mt-2 space-y-2">
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Reading Comprehension</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Listening Skills</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Speaking Practice</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Academic Writing</span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-medium">
-                            Course Features
-                          </h3>
-                          <ul className="mt-2 space-y-2">
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>5 Full-Length Practice Tests</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Pronunciation Training</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Vocabulary Building Tools</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Speaking Assessment</span>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </CardContent>
-                    <CardFooter>
-                      <Button className="w-full bg-orange-400 hover:bg-orange-500">
-                        Explore TOEFL Prep
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                </TabsContent>
-                <TabsContent value="ielts" className="mt-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>IELTS Preparation</CardTitle>
-                      <CardDescription>
-                        Complete preparation for the International English
-                        Language Testing System
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="grid gap-4 md:grid-cols-2">
-                        <div>
-                          <h3 className="text-lg font-medium">
-                            What You'll Learn
-                          </h3>
-                          <ul className="mt-2 space-y-2">
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Academic Reading & Writing</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Listening Comprehension</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Speaking Interview Techniques</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>General vs. Academic Training</span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-medium">
-                            Course Features
-                          </h3>
-                          <ul className="mt-2 space-y-2">
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>6 Full-Length Practice Tests</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Band Score Improvement Tips</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Mock Speaking Interviews</span>
-                            </li>
-                            <li className="flex items-center">
-                              <CheckCircle className="mr-2 h-4 w-4 text-orange-500" />
-                              <span>Writing Feedback & Scoring</span>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </CardContent>
-                    <CardFooter>
-                      <Button className="w-full bg-orange-400 hover:bg-orange-500">
-                        Explore IELTS Prep
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                </TabsContent>
-              </Tabs>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {tests.map((test) => (
+                <Card key={test.name} className="hover:shadow-md transition-shadow group">
+                  <CardHeader>
+                    <div className="flex items-center justify-between mb-1">
+                      <CardTitle className="text-2xl">{test.name}</CardTitle>
+                      <Badge variant="secondary" className="text-xs">{test.badge}</Badge>
+                    </div>
+                    <CardDescription>{test.desc}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Button asChild className="w-full bg-orange-400 hover:bg-orange-500">
+                      <Link href={test.href}>Learn More</Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Features Section */}
-        <section className="w-full py-6 md:py-12 lg:py-24 bg-gray-50">
+        {/* Why Choose YPrep */}
+        <section className="w-full py-12 md:py-20 lg:py-24 bg-gray-50">
           <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Why Choose Our Test Prep
-                </h2>
-                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  Our comprehensive approach helps you achieve your highest
-                  possible score
-                </p>
-              </div>
+            <div className="text-center space-y-3 mb-12">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Why Choose YPrep?</h2>
+              <p className="max-w-[680px] mx-auto text-gray-500 md:text-lg">
+                We're not a big chain — we're a boutique center that truly invests in each student
+              </p>
             </div>
-            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-orange-100 text-orange-600">
-                  <BookOpen className="h-6 w-6" />
+            <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {features.map(({ icon: Icon, title, desc }) => (
+                <div key={title} className="flex flex-col space-y-3">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-orange-100 text-orange-600">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-lg font-semibold">{title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
                 </div>
-                <div className="space-y-2">
-                  <h3 className="text-xl font-bold">Comprehensive Materials</h3>
-                  <p className="text-gray-500 dark:text-gray-400">
-                    Access thousands of practice questions, full-length tests,
-                    and detailed explanations.
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-orange-100 text-orange-600">
-                  <GraduationCap className="h-6 w-6" />
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-xl font-bold">Expert Instructors</h3>
-                  <p className="text-gray-500 dark:text-gray-400">
-                    Learn from instructors who scored in the top percentiles and
-                    have years of teaching experience.
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-orange-100 text-orange-600">
-                  <BarChart className="h-6 w-6" />
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-xl font-bold">Performance Analytics</h3>
-                  <p className="text-gray-500 dark:text-gray-400">
-                    Track your progress with detailed analytics and personalized
-                    recommendations.
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-orange-100 text-orange-600">
-                  <Globe className="h-6 w-6" />
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-xl font-bold">Accessible Anywhere</h3>
-                  <p className="text-gray-500 dark:text-gray-400">
-                    Study on any device, anytime, with our mobile-friendly
-                    platform and offline access.
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-orange-100 text-orange-600">
-                  <Users className="h-6 w-6" />
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-xl font-bold">Community Support</h3>
-                  <p className="text-gray-500 dark:text-gray-400">
-                    Join study groups, forums, and live Q&A sessions with other
-                    test-takers.
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-orange-100 text-orange-600">
-                  <Clock className="h-6 w-6" />
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-xl font-bold">Flexible Scheduling</h3>
-                  <p className="text-gray-500 dark:text-gray-400">
-                    Create a personalized study plan that fits your timeline and
-                    learning style.
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Testimonials Section */}
-        <section className="w-full py-6 md:py-12 lg:py-24">
+        {/* Testimonials */}
+        <section className="w-full py-12 md:py-20 lg:py-24">
           <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Success Stories
-                </h2>
-                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  Hear from students who achieved their target scores with our
-                  test prep
-                </p>
-              </div>
+            <div className="text-center space-y-3 mb-12">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">What Our Students Say</h2>
+              <p className="max-w-[680px] mx-auto text-gray-500 md:text-lg">
+                Real stories from students who achieved their target scores with YPrep
+              </p>
             </div>
-            <div className="mx-auto max-w-5xl py-12">
+            <div className="mx-auto max-w-3xl">
               <TestimonialsCarousel />
             </div>
           </div>
         </section>
 
-        {/* Pricing Section */}
-        <section className="w-full py-6 md:py-12 lg:py-24 bg-gray-50">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Simple, Transparent Pricing
-                </h2>
-                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  Choose the plan that fits your needs and budget
-                </p>
-              </div>
-            </div>
-            <div className="mx-auto max-w-5xl py-12">
-              <PricingTable />
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-orange-500 text-white">
-          <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-                Ready to achieve your highest score?
-              </h2>
-              <p className="max-w-[600px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Start your 7-day free trial today. No credit card required.
-              </p>
-            </div>
-            <div className="flex flex-col gap-2 min-[400px]:flex-row lg:justify-end">
-              <Button size="lg" variant="secondary">
-                Start Free Trial
+        {/* CTA Banner */}
+        <section className="w-full py-16 md:py-24 bg-orange-500 text-white">
+          <div className="container px-4 md:px-6 text-center space-y-5">
+            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">
+              Ready to start your test prep journey?
+            </h2>
+            <p className="max-w-[580px] mx-auto md:text-lg opacity-90">
+              Get in touch and we'll help you find the right program for your goals and timeline.
+            </p>
+            <div className="flex flex-col gap-3 sm:flex-row justify-center">
+              <Button asChild size="lg" variant="secondary">
+                <Link href="/about#contact">Contact Us Today</Link>
               </Button>
               <Button
+                asChild
                 size="lg"
                 variant="outline"
-                className="bg-transparent text-white border-white hover:bg-white hover:text-orange-500"
+                className="bg-transparent border-white text-white hover:bg-white hover:text-orange-500"
               >
-                Schedule Demo
+                <Link href="/tutoring">View All Programs</Link>
               </Button>
             </div>
           </div>
